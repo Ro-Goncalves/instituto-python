@@ -1,0 +1,1183 @@
+WEBVTT
+X-TIMESTAMP-MAP=LOCAL:00:00:00.000,MPEGTS:127826
+
+1
+00:00:00.066 --> 00:00:03.403
+Let's dive into an automated project
+planning.
+
+2
+00:00:03.870 --> 00:00:08.870
+The goal here is to use a crew
+to help us break a project into tasks,
+
+3
+00:00:09.376 --> 00:00:12.379
+estimate them and do some allocation.
+
+4
+00:00:12.512 --> 00:00:17.512
+This is a common use case for
+consultancies out there and web agencies,
+
+5
+00:00:17.550 --> 00:00:21.588
+they're trying to put out as many offers
+as they can.
+
+6
+00:00:21.855 --> 00:00:24.758
+So as people reached out them
+to build projects,
+
+7
+00:00:24.758 --> 00:00:28.862
+they can pretty quickly
+estimate this project and plan around it.
+
+8
+00:00:29.362 --> 00:00:32.365
+For this crew, we're going to be working
+with three agents.
+
+9
+00:00:32.599 --> 00:00:35.835
+We're going to be using a project planner,
+an estimation
+
+10
+00:00:35.835 --> 00:00:38.838
+analyst, and an allocation strategist.
+
+11
+00:00:39.272 --> 00:00:42.275
+And for each of the agents,
+we're going to have one task.
+
+12
+00:00:42.776 --> 00:00:45.779
+We're going to have the task breakdown,
+
+13
+00:00:46.179 --> 00:00:49.783
+the time estimation
+and their resource allocation.
+
+14
+00:00:50.316 --> 00:00:55.316
+This is a fairly simple crew setup where
+we only have three agents and three tasks,
+
+15
+00:00:55.555 --> 00:00:58.558
+and every agent's doing one single task.
+
+16
+00:00:58.558 --> 00:01:02.562
+The idea here
+is that giving initial inputs around
+
+17
+00:01:02.562 --> 00:01:05.832
+what we're trying to achieve,
+what is this project?
+
+18
+00:01:05.965 --> 00:01:08.768
+What is the acceptance criteria
+for the project?
+
+19
+00:01:08.768 --> 00:01:11.838
+And who are the people
+that we have available to work on this?
+
+20
+00:01:12.138 --> 00:01:15.141
+We can very quickly create a project plan.
+
+21
+00:01:15.475 --> 00:01:20.180
+And this project plan should have tasks
+and their allocations and also
+
+22
+00:01:20.180 --> 00:01:25.180
+major milestones of how we're going
+to track the progress of this project.
+
+23
+00:01:25.885 --> 00:01:30.457
+The idea here is that we use these agents
+to output a structured format
+
+24
+00:01:30.757 --> 00:01:32.092
+where we're going to have a json
+
+25
+00:01:32.092 --> 00:01:36.129
+that we can push into whatever
+our project tool might be.
+
+26
+00:01:36.463 --> 00:01:40.300
+So if we're using Jira or Trello
+or whatever it could be,
+
+27
+00:01:40.533 --> 00:01:44.604
+we would be able to push these tasks
+and their allocations into them.
+
+28
+00:01:45.205 --> 00:01:46.139
+Let's look at a code.
+
+29
+00:01:47.240 --> 00:01:48.141
+All right, so the first
+
+30
+00:01:48.141 --> 00:01:51.511
+thing we will do is actually do
+our initial imports.
+
+31
+00:01:52.078 --> 00:01:55.115
+We're going to make sure that we
+unload the environment variables.
+
+32
+00:01:55.115 --> 00:01:57.150
+And now all libraries
+we will need.
+
+33
+00:01:57.150 --> 00:02:00.720
+In this case, we're going to use the
+OS library the Yaml library
+
+34
+00:02:00.887 --> 00:02:04.023
+for loading our agents
+and tasks Yaml files.
+
+35
+00:02:04.424 --> 00:02:08.161
+And then from CrewAI
+we're bringing our three main classes:
+
+36
+00:02:08.428 --> 00:02:12.465
+the agent class, the task
+class, and the crew class.
+
+37
+00:02:12.866 --> 00:02:15.835
+And that should be all that
+we need to start this crew.
+
+38
+00:02:16.369 --> 00:02:20.507
+Now let's go ahead and set up
+what is the model that we are going to be
+
+39
+00:02:20.507 --> 00:02:25.507
+using for this. CrewAI by default
+uses OpenAI models.
+
+40
+00:02:25.778 --> 00:02:29.115
+But remember
+you can use any models of your choosing.
+
+41
+00:02:29.349 --> 00:02:34.349
+You can use any of the providers out there
+including HuggingFace,
+
+42
+00:02:34.420 --> 00:02:37.724
+Azure, Anthropic, and anything in between.
+
+43
+00:02:38.424 --> 00:02:39.492
+For this case,
+
+44
+00:02:39.492 --> 00:02:44.063
+we're going to be actually setting up
+the OpenAI model to be GPT-4o-
+
+45
+00:02:44.063 --> 00:02:45.532
+mini.
+
+46
+00:02:45.532 --> 00:02:50.003
+In that way, we can keep our costs low
+and have a good execution.
+
+47
+00:02:50.603 --> 00:02:54.974
+So now let's load our agents and tasks
+Yaml file.
+
+48
+00:02:55.408 --> 00:02:59.179
+This should be pretty straightforward,
+but let's take a look at this code
+
+49
+00:02:59.179 --> 00:03:00.413
+real quick.
+
+50
+00:03:00.413 --> 00:03:05.285
+You can see here that this code snippet
+is basically loading both our agents
+
+51
+00:03:05.285 --> 00:03:09.722
+Yaml and tasks Yaml,
+and then dynamically loading that file
+
+52
+00:03:09.722 --> 00:03:14.722
+and assigning that to two variables:
+the agents config and tasks config.
+
+53
+00:03:15.361 --> 00:03:19.465
+Before we keep going, let's take a brief
+look on one of these agents and tasks
+
+54
+00:03:19.465 --> 00:03:20.400
+files look like.
+
+55
+00:03:21.968 --> 00:03:22.535
+So on the
+
+56
+00:03:22.535 --> 00:03:27.173
+agents Yaml file, you can see that
+we have three agents: the project
+
+57
+00:03:27.173 --> 00:03:32.173
+planning agent, the estimation agent,
+and a resource allocation agent.
+
+58
+00:03:33.012 --> 00:03:36.749
+If we look through this, you're
+going to see that every agent has a role,
+
+59
+00:03:37.250 --> 00:03:40.053
+a goal, and a backstory
+
+60
+00:03:40.053 --> 00:03:42.522
+and a few extra configurations.
+
+61
+00:03:42.522 --> 00:03:45.625
+In this case,
+we're not allowing our agents to delegate
+
+62
+00:03:45.625 --> 00:03:49.562
+a work to each other to make sure
+that we keep the execution as streamlined
+
+63
+00:03:49.562 --> 00:03:54.367
+as possible, and we also have enable
+the verbose mode to be true,
+
+64
+00:03:54.667 --> 00:03:58.638
+meaning that we are going to be able
+to see how these agents behave,
+
+65
+00:03:58.805 --> 00:04:03.643
+what tools to use in everything, on
+how they go about performing their task.
+
+66
+00:04:04.377 --> 00:04:08.248
+You can spend some time and playing around
+with the role the go into backstory
+
+67
+00:04:08.248 --> 00:04:12.218
+if you want to, but the interesting piece
+is that you can see there are
+
+68
+00:04:12.252 --> 00:04:16.256
+some variables are being interpolated here
+in our agent's descriptions.
+
+69
+00:04:16.689 --> 00:04:21.689
+So you can see that we are interpolating
+a project type, a project objectives
+
+70
+00:04:21.894 --> 00:04:26.532
+and industry throughout the entire
+definition of the agents.
+
+71
+00:04:27.300 --> 00:04:30.436
+Now let's take a look
+at our task Yaml definition.
+
+72
+00:04:31.504 --> 00:04:32.839
+On our tasks Yaml,
+
+73
+00:04:32.839 --> 00:04:36.442
+you can see that
+we have three tasks: the task breakdown,
+
+74
+00:04:36.776 --> 00:04:41.114
+the time resource allocation,
+and the research allocation tasks.
+
+75
+00:04:41.581 --> 00:04:44.317
+And then again
+you're going to find the same variables
+
+76
+00:04:44.317 --> 00:04:48.721
+be interpolated here in the tasks
+where you can also see project type.
+
+77
+00:04:48.955 --> 00:04:52.592
+But a new variable like project
+requirements and team members.
+
+78
+00:04:53.192 --> 00:04:56.663
+Feel free to play around with this
+tasks and agents descriptions
+
+79
+00:04:56.663 --> 00:04:58.131
+once that you executed a Jupyter
+
+80
+00:04:58.131 --> 00:05:01.601
+notebook, just in case you want to see
+what different results might look like.
+
+81
+00:05:02.101 --> 00:05:05.104
+Now let's go back into our code.
+
+82
+00:05:05.204 --> 00:05:08.841
+Now that we have our agents
+config and task config loaded.
+
+83
+00:05:09.008 --> 00:05:14.008
+What we can do is create a pydantic model
+for our structured output.
+
+84
+00:05:14.547 --> 00:05:17.650
+Keep in mind that in this case,
+what we're trying to do
+
+85
+00:05:17.817 --> 00:05:22.055
+is have a full project
+planning by the end of this crew execution.
+
+86
+00:05:22.488 --> 00:05:24.257
+And that means that we want to be able
+
+87
+00:05:24.257 --> 00:05:27.694
+to push this into an external systems
+if necessary.
+
+88
+00:05:28.027 --> 00:05:30.930
+And for that, we need a structured output.
+
+89
+00:05:30.930 --> 00:05:34.834
+So in here, you can see that
+we are creating three classes:
+
+90
+00:05:35.068 --> 00:05:38.604
+a task estimate, a milestone
+and a project plan.
+
+91
+00:05:39.405 --> 00:05:41.908
+The project plan is going
+to basically have
+
+92
+00:05:41.908 --> 00:05:44.911
+a list of tasks and milestones.
+
+93
+00:05:45.378 --> 00:05:48.848
+And the milestone
+will have a name in a list of tasks.
+
+94
+00:05:49.349 --> 00:05:52.852
+This task estimate
+is the simplest model that we have.
+
+95
+00:05:53.152 --> 00:05:54.554
+It has a task name.
+
+96
+00:05:54.554 --> 00:05:59.325
+The estimated a required hours to do it,
+and a required resources
+
+97
+00:05:59.392 --> 00:06:02.895
+that will include a name of the people
+that are going to be required
+
+98
+00:06:03.029 --> 00:06:04.997
+to do this task.
+
+99
+00:06:04.997 --> 00:06:09.202
+By the end of our crew,
+we should have this project plan object
+
+100
+00:06:09.469 --> 00:06:14.469
+ready for us so we can turn this into json
+if you want to, or into a dictionary and
+
+101
+00:06:15.108 --> 00:06:18.945
+you can push this into external systems
+or do whatever you want to do with it.
+
+102
+00:06:19.345 --> 00:06:22.582
+It's a very reasonable
+and nice way to have an output
+
+103
+00:06:22.782 --> 00:06:25.518
+pushed into any external
+systems that you might have.
+
+104
+00:06:27.120 --> 00:06:30.490
+Now, in order for us to create our crew
+agent and tasks,
+
+105
+00:06:30.656 --> 00:06:34.527
+we're going to need to refer back
+to those Yaml config files.
+
+106
+00:06:34.761 --> 00:06:36.596
+Let's check that out.
+
+107
+00:06:36.596 --> 00:06:41.000
+And here you can see that as we create
+each of our agents, we're actually
+
+108
+00:06:41.000 --> 00:06:45.304
+referring back to the agent's
+config variable from the Yaml file.
+
+109
+00:06:45.571 --> 00:06:48.341
+And we are saying what is the key
+in the Yaml file
+
+110
+00:06:48.341 --> 00:06:51.144
+that provides
+the configuration for this agent.
+
+111
+00:06:51.144 --> 00:06:54.080
+So this is very straightforward.
+
+112
+00:06:54.080 --> 00:06:57.250
+For the tasks
+you can see that we're actually loading
+
+113
+00:06:57.250 --> 00:07:01.421
+the tasks config file
+that comes with all those Yaml settings.
+
+114
+00:07:01.621 --> 00:07:04.657
+And we're again passing
+what is the Yaml key
+
+115
+00:07:04.824 --> 00:07:07.827
+that holds the configuration
+for each task.
+
+116
+00:07:08.161 --> 00:07:12.031
+We're also being very verbose here
+because we're being clear around
+
+117
+00:07:12.165 --> 00:07:15.301
+what is the agent
+that we want to own this task.
+
+118
+00:07:15.535 --> 00:07:19.505
+We could do this in the Yaml file
+if we want to, but we are trying
+
+119
+00:07:19.505 --> 00:07:23.676
+to be very explicit here for the sake of
+just making it easier for understand.
+
+120
+00:07:24.343 --> 00:07:27.313
+In this final resource allocation task,
+you can see that
+
+121
+00:07:27.313 --> 00:07:30.316
+we have an output pydantic attribute.
+
+122
+00:07:30.650 --> 00:07:34.420
+What that means is that whatever
+the output of this final task
+
+123
+00:07:34.420 --> 00:07:37.423
+is, we want it to be a pydantic object.
+
+124
+00:07:37.523 --> 00:07:41.461
+And this is the object that we created
+earlier, the project plan.
+
+125
+00:07:41.794 --> 00:07:45.698
+And this is the structured output
+that we want to do something with it.
+
+126
+00:07:45.698 --> 00:07:49.735
+To push it into an external system
+if necessary, or even an internal
+
+127
+00:07:49.735 --> 00:07:51.337
+one in the future.
+
+128
+00:07:51.337 --> 00:07:55.441
+And for wrapping things
+up, you can see that we're starting a crew,
+
+129
+00:07:55.708 --> 00:07:59.011
+and this crew
+has our three agents in our three tasks.
+
+130
+00:07:59.445 --> 00:08:01.848
+This is a very straightforward setup.
+
+131
+00:08:01.848 --> 00:08:05.551
+Now let's talk about the inputs
+that we sent to this crew.
+
+132
+00:08:05.718 --> 00:08:07.687
+And how that information gets in there.
+
+133
+00:08:09.822 --> 00:08:11.791
+Remember that we had a set of variables
+
+134
+00:08:11.791 --> 00:08:14.794
+that we interpolate
+in our agents and tasks.
+
+135
+00:08:15.828 --> 00:08:19.298
+If you look at them in here,
+we are setting up every single
+
+136
+00:08:19.332 --> 00:08:20.967
+of those variables here.
+
+137
+00:08:20.967 --> 00:08:23.002
+So you can see a project.
+
+138
+00:08:23.002 --> 00:08:24.770
+You can see the industry.
+
+139
+00:08:24.770 --> 00:08:29.770
+You can see the project objectives, the
+team members and the project requirements.
+
+140
+00:08:30.309 --> 00:08:32.311
+So let's dive into them.
+
+141
+00:08:32.311 --> 00:08:36.983
+This is a website project for a company
+that works in the technology sector.
+
+142
+00:08:37.383 --> 00:08:41.454
+And the objective is pretty simple,
+is create a website for a small business.
+
+143
+00:08:41.754 --> 00:08:44.757
+We're going to have five people
+that are going to be working in this,
+
+144
+00:08:45.024 --> 00:08:48.427
+including a project manager,
+a software engineer, a designer,
+
+145
+00:08:48.528 --> 00:08:50.997
+and a couple of QA engineers.
+
+146
+00:08:50.997 --> 00:08:54.000
+And then we have a series
+of project requirements.
+
+147
+00:08:54.467 --> 00:08:59.305
+You can think of this as like
+after you do initial call with a customer,
+
+148
+00:08:59.605 --> 00:09:04.510
+you can bring all this information
+into our crew in order for the crew
+
+149
+00:09:04.544 --> 00:09:07.880
+to actually break down the task
+and estimate it for you.
+
+150
+00:09:08.314 --> 00:09:11.551
+You can see how this could be
+super valuable,
+
+151
+00:09:11.551 --> 00:09:15.521
+especially if you're a small business
+or a consultancy, and you're
+
+152
+00:09:15.521 --> 00:09:19.926
+trying to get offers and codes out there
+as fast as you can.
+
+153
+00:09:20.126 --> 00:09:23.396
+Let's take a look at what
+this actually looks like.
+
+154
+00:09:24.130 --> 00:09:26.566
+The project requirements
+are pretty straightforward.
+
+155
+00:09:26.566 --> 00:09:29.135
+We want to make sure
+this is a responsive design.
+
+156
+00:09:29.135 --> 00:09:32.471
+We want to make sure this is modern
+and visually appealing.
+
+157
+00:09:32.605 --> 00:09:35.207
+We also want to make sure that it's user
+friendly.
+
+158
+00:09:35.207 --> 00:09:40.079
+It must have a few pages like an about us,
+services, and contact us.
+
+159
+00:09:40.479 --> 00:09:44.083
+It should have a blog section
+and ensure that it's super fast.
+
+160
+00:09:44.317 --> 00:09:47.320
+Social media links and also testimonials.
+
+161
+00:09:47.587 --> 00:09:51.157
+So these are the inputs that we're going
+to be sending to our crew.
+
+162
+00:09:51.857 --> 00:09:54.293
+If you remember, our agents and tasks
+
+163
+00:09:54.293 --> 00:09:57.430
+Yamls had all these variables
+to be interpolated on it.
+
+164
+00:09:57.730 --> 00:10:00.600
+And this is the information
+that will be interpolated
+
+165
+00:10:00.600 --> 00:10:05.137
+throughout those agents and tasks in order
+for them to get their work done.
+
+166
+00:10:05.538 --> 00:10:08.841
+And you could
+easily, dynamically get this information
+
+167
+00:10:09.041 --> 00:10:12.011
+in order to kick off this crew
+if you want to you.
+
+168
+00:10:12.211 --> 00:10:15.581
+So now let's run this crew
+and see what that's going to look like.
+
+169
+00:10:15.881 --> 00:10:16.749
+It's going to be pretty fun.
+
+170
+00:10:17.683 --> 00:10:18.384
+Okay.
+
+171
+00:10:18.384 --> 00:10:21.554
+Now for us to kick off this crew,
+we basically
+
+172
+00:10:21.554 --> 00:10:25.024
+create a dictionary
+with all our inputs in it.
+
+173
+00:10:25.491 --> 00:10:28.494
+And we can pass this dictionary as inputs
+
+174
+00:10:28.594 --> 00:10:31.631
+for our crew dot kickoff function.
+
+175
+00:10:32.164 --> 00:10:36.602
+If we call this, we're going to see
+our agents start to do their work.
+
+176
+00:10:37.136 --> 00:10:39.472
+Let's tag along for a second.
+
+177
+00:10:39.472 --> 00:10:40.773
+You can see here,
+
+178
+00:10:40.773 --> 00:10:44.343
+our project planner agent is starting
+by analyzing
+
+179
+00:10:44.343 --> 00:10:47.346
+the project requirements
+for the website project.
+
+180
+00:10:47.380 --> 00:10:51.083
+And here you can already see
+one of the interpolations happening.
+
+181
+00:10:51.417 --> 00:10:54.954
+This is what is the project type. In here
+
+182
+00:10:54.954 --> 00:10:57.990
+you can see all the difference
+requirements.
+
+183
+00:10:58.224 --> 00:11:01.227
+And below you can see
+all the different team members.
+
+184
+00:11:01.460 --> 00:11:04.463
+So let's see how this agent does
+that work.
+
+185
+00:11:04.897 --> 00:11:07.566
+You can see that the agent's
+final insert includes
+
+186
+00:11:07.566 --> 00:11:11.837
+a whole project breakdown and a set of
+tasks list.
+
+187
+00:11:12.238 --> 00:11:16.008
+And this goes pretty deeply on
+what is the description of the task
+
+188
+00:11:16.175 --> 00:11:19.045
+and what is the timeline,
+any dependencies,
+
+189
+00:11:19.045 --> 00:11:22.048
+deliverables,
+and who will be assigned to this.
+
+190
+00:11:22.148 --> 00:11:23.683
+So, this was pretty fast.
+
+191
+00:11:25.017 --> 00:11:25.384
+You can
+
+192
+00:11:25.384 --> 00:11:29.188
+also see that during this crew execution,
+we also got a Gantt chart,
+
+193
+00:11:29.388 --> 00:11:33.492
+where you can see all the different tasks,
+their durations and dependencies,
+
+194
+00:11:34.126 --> 00:11:37.730
+and even a conclusion
+detailing out the breakdown of the tasks.
+
+195
+00:11:38.297 --> 00:11:42.768
+Now this agent is done
+and we have our new agent takes in.
+
+196
+00:11:43.035 --> 00:11:46.038
+And this is the expert estimation analyst.
+
+197
+00:11:46.338 --> 00:11:49.842
+This agent is going to estimate
+every single one of those tasks.
+
+198
+00:11:50.109 --> 00:11:53.112
+Let's see
+what is going to be the final output.
+
+199
+00:11:53.479 --> 00:11:55.815
+Before we dig into the final output,
+
+200
+00:11:55.815 --> 00:12:00.686
+an element of running these cases in
+production is knowing how much it costs.
+
+201
+00:12:01.187 --> 00:12:04.423
+If you want their renders at scale
+to generate, project
+
+202
+00:12:04.423 --> 00:12:08.094
+estimate and planning,
+how much would that actually cost you?
+
+203
+00:12:08.461 --> 00:12:10.963
+So let's start by looking into this.
+
+204
+00:12:10.963 --> 00:12:14.667
+Because we're using GPT-4o-mini,
+we knew that
+
+205
+00:12:14.667 --> 00:12:17.670
+this costs $0.15 per million tokens.
+
+206
+00:12:18.170 --> 00:12:21.140
+And crew already gives you usage metrics,
+
+207
+00:12:21.140 --> 00:12:24.643
+including prompt tokens
+and awesome completion tokens.
+
+208
+00:12:24.944 --> 00:12:29.849
+So let's do some simple math to understand
+how much would this actually cost you?
+
+209
+00:12:30.850 --> 00:12:32.985
+You can see this is pretty cheap.
+
+210
+00:12:32.985 --> 00:12:37.456
+It's around
+0.001 cents to actually run it.
+
+211
+00:12:38.057 --> 00:12:41.060
+And use around 7000 tokens.
+
+212
+00:12:41.293 --> 00:12:44.396
+Now, let's see what was the actual result.
+
+213
+00:12:45.698 --> 00:12:49.468
+First,
+let's see the raw output of this crew.
+
+214
+00:12:50.102 --> 00:12:54.373
+If we print this, we can see that
+we got a dictionary back.
+
+215
+00:12:54.607 --> 00:12:57.843
+So it is a structured output as we wanted.
+
+216
+00:12:58.077 --> 00:13:02.214
+Where you have a list of tasks,
+and every task has a name
+
+217
+00:13:02.381 --> 00:13:05.417
+and estimated in a required resource list.
+
+218
+00:13:05.718 --> 00:13:08.521
+But you also got a milestone.
+
+219
+00:13:08.521 --> 00:13:12.925
+And every milestone has a milestone
+name in the list of tasks on it.
+
+220
+00:13:13.559 --> 00:13:16.562
+Now, let's inspect this a little further.
+
+221
+00:13:17.263 --> 00:13:20.266
+Let's start
+by first looking into the tasks.
+
+222
+00:13:20.366 --> 00:13:24.036
+And in here I'm going to plot it
+as a pandas dataframe.
+
+223
+00:13:24.236 --> 00:13:27.006
+Just so it's easy for us to visualize.
+
+224
+00:13:27.006 --> 00:13:29.875
+You can see that
+every task has a name now,
+
+225
+00:13:29.875 --> 00:13:34.146
+and an estimated number of hours,
+and also the required resources.
+
+226
+00:13:34.480 --> 00:13:37.917
+So we have a clear understanding of who's
+going to be doing what,
+
+227
+00:13:38.117 --> 00:13:41.954
+from creating a design all the way
+to creating each one of those pages,
+
+228
+00:13:42.221 --> 00:13:45.658
+to actually testing the whole thing
+and making sure that it works.
+
+229
+00:13:46.692 --> 00:13:48.260
+Now for the milestones,
+
+230
+00:13:48.260 --> 00:13:51.697
+I'm going to be plotting it as a pandas
+data frame as well.
+
+231
+00:13:52.031 --> 00:13:55.534
+And here you can see
+the three different milestones. And each
+
+232
+00:13:55.534 --> 00:13:58.537
+milestones is a list of tasks
+that needs to be concluded
+
+233
+00:13:58.537 --> 00:14:00.673
+in order for us to check it off.
+
+234
+00:14:00.673 --> 00:14:02.041
+So this is pretty good.
+
+235
+00:14:02.041 --> 00:14:05.377
+This is a very fictional example,
+but it highlights the power
+
+236
+00:14:05.477 --> 00:14:09.849
+of how you can automate a few processes
+that could take a lot of hours
+
+237
+00:14:10.115 --> 00:14:13.953
+to be done in a few minutes,
+and you don't have to think about it.
+
+238
+00:14:14.153 --> 00:14:15.621
+It just works.
+
+239
+00:14:15.621 --> 00:14:18.891
+This is actually a use case that we are
+seeing being deployed out there
+
+240
+00:14:19.258 --> 00:14:22.261
+and can definitely benefit
+you or your company.
+
+241
+00:14:22.761 --> 00:14:23.963
+This is just the beginning.
+
+242
+00:14:23.963 --> 00:14:25.197
+There's so much more that
+
+243
+00:14:25.197 --> 00:14:28.300
+we're going to be able to build.
+As we go through the next lessons,
+
+244
+00:14:28.300 --> 00:14:30.936
+we're going to learn a lot.
+All the different ways
+
+245
+00:14:30.936 --> 00:14:34.039
+that you can build the crews together,
+and how you can put them together.
+
+246
+00:14:34.039 --> 00:14:37.710
+And you're going to build even
+more complex and interesting use cases.
+
+247
+00:14:38.143 --> 00:14:38.978
+That said,
+
+248
+00:14:38.978 --> 00:14:40.813
+let's jump into the next lesson,
+
+249
+00:14:40.813 --> 00:14:44.583
+where we're going to learn
+even more and build a brand new use case.
+
+250
+00:14:44.650 --> 00:14:46.285
+So I see you there in a second.
+
