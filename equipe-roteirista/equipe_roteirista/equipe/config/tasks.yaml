@@ -1,0 +1,81 @@
+tarefa_analise_texto:
+  description: >
+    Sua tarefa é **analisar** o conteúdo fornecido <texto_base> e **extrair** as **informações narrativas essenciais** 
+    que servirão como base para a criação de um **roteiro detalhado**. O objetivo é organizar essas informações de 
+    forma clara, para que elas facilitem a tarefa de **roteirização**, proporcionando uma estrutura sólida para o 
+    desenvolvimento do roteiro.    
+
+    <texto_base>  
+    {texto_base}  
+    </texto_base>
+
+  expected_output: >  
+    Você deverá entregar uma **lista organizada** dos **elementos narrativos** extraídos do <texto_base>, contendo:
+      * **Conflito Inicial**, 
+      * **Desenvolvimento**, 
+      * **Clímax**, 
+      * **Resolução**, 
+      * **Conclusão**.
+
+    A saída deve ser **clara** e **coesa**, fornecendo uma base sólida para que o Agente Roteirista utilize na 
+    construção do roteiro.
+
+
+tarefa_criacao_roteiro:
+  description: >
+    Sua tarefa é criar um **Roteiro Detalhado**, estruturado de forma **Clara** e **Coesa**. O roteiro deve seguir 
+    uma sequência **Lógica** e **Emocionalmente Envolvente**, sem gerar **Falas Específicas**, mas descrevendo o 
+    que deve ser **Discutido**, as **Ações** dos personagens e as **Emoções** que devem ser transmitidas em 
+    momentos-chave. Sua função é garantir que o **Fluxo Dramático** seja mantido e que o roteiro possa servir como 
+    uma base sólida para a criação de **Diálogos Envolventes**.
+
+    Você deve organizar o roteiro de acordo com o seguinte modelo: 
+      * **Conflito Inicial**, 
+      * **Desenvolvimento**, 
+      * **Clímax**, 
+      * **Resolução** 
+      * **Conclusão**. 
+      
+    Cada seção deve indicar claramente:
+      1. **Tópicos de Conversa** a serem explorados.
+      2. **Ações ou Comportamentos** dos personagens que expressam suas **Intenções**.
+      3. **Emoções** que os personagens devem transmitir em cada parte da narrativa.
+
+    Ao estruturar o roteiro, leve em conta o **Tom** e a **Intensidade Emocional** apropriados para cada fase, 
+    assegurando uma **Progressão Dramática Fluida** e **Impactante**.   
+
+  expected_output: >  
+    Você deverá entregar um **Roteiro Estruturado** conforme o modelo fornecido, com foco em:
+      - **Tópicos de Conversa**.
+      - **Ações** dos personagens.
+      - **Emoções** ou **Intenções** que devem ser expressas em momentos específicos.
+
+    O roteiro será um **Guia** detalhado e **Coerente**, pronto para ser utilizado por 
+    **Escritores** ou **Diretores**, que poderão desenvolver **Diálogos Ricos e Significativos** 
+    com base nesse material.
+   
+
+tarefa_revisao_roteiro:
+  description: >
+    Sua tarefa é **Revisar o Roteiro Criado**, garantindo que ele seja **Coeso**, **Consistente** e fiel ao 
+    **<texto_base>**.
+
+    Você deve **Verificar** se o roteiro segue corretamente a estrutura de: 
+      * **Conflito Inicial**, 
+      * **Desenvolvimento**, 
+      * **Clímax**, 
+      * **Resolução** ,
+      * **Conclusão**. 
+      
+    Analisando também se as **Emoções** e **Tópicos de Conversa** estão **Bem Representados** e se há 
+    **Transições Fluidas** entre as partes. Em caso de **Inconsistências**, **Sugerir Ajustes** que 
+    alinhem o roteiro com o **Contexto Emocional** e **Narrativo Original**.
+
+    <texto_base>  
+    {texto_base}  
+    </texto_base>
+   
+  expected_output: >
+    Você deverá entregar um **Roteiro Revisado**, que deve ser escrito em **Português Brasileiro**, garantindo que todas as 
+    partes estejam **Bem Conectadas** e que o **Contexto Original**, as **Emoções** e os 
+    **Tópicos de Conversa** sejam preservados e permaneçam **Consistentes**. 
