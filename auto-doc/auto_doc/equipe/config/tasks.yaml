@@ -1,0 +1,246 @@
+mapear_processo:
+  description: >
+    Revisar os <requisitos> levantados e extrair as informações essenciais 
+    sobre os processos de negócios. Isso inclui:
+
+    - Identificar e descrever as atividades principais.
+    - Mapeamento das interações entre os diferentes stakeholders.
+    - Detalhamento dos fluxos de trabalho e das etapas necessárias para 
+    a conclusão de cada processo.
+    - Compilação de informações sobre responsáveis, prazos e critérios 
+    de sucesso.
+    - Elaboração de um documento inicial que organize essas informações 
+    de maneira clara e lógica.
+    - Use a ferramenta de sumarização para organizar esses pontos em uma visão
+    concisa e estruturada para a documentação. 
+
+    <requisitos>
+    {requisitos}
+    </requisitos>
+  expected_output: >
+    O resultado esperado da tarefa é um documento estruturado contendo:
+    
+    - Uma lista detalhada de atividades e interações.
+    - Descrições claras das responsabilidades e fluxos de trabalho.
+    - Notas sobre quaisquer considerações especiais que possam impactar 
+    a documentação de negócios que será criada posteriormente.
+
+documentar_processo:
+  description: >
+    Elaborar a documentação não técnica com base nas informações estruturadas 
+    fornecidas pelo Agente Analista de Processos. Isso inclui:
+
+    - Estruturar a documentação de acordo com o <template_padrao> pré-definido, 
+    garantindo consistência e facilidade de leitura.
+    - Usar uma linguagem simples e acessível, evitando jargões técnicos que possam 
+    confundir os leitores. Se jargões forem necessários, incluí-los no Glossário 
+    para maior clareza.
+    - Incluir seções que expliquem detalhadamente o propósito do processo, 
+    as atividades envolvidas, as integrações tecnológicas e as responsabilidades de 
+    cada stakeholder.
+    - Incorporar exemplos práticos e cenários de aplicação, sempre que possível, 
+    para ilustrar os processos e facilitar a compreensão do time de negócios.
+    - Garantir que a mantenha um alto padrão de qualidade e profissionalismo.
+    - Usar elementos visuais, como tabelas, gráficos de fluxo e diagramas BPMN, 
+    para representar as atividades e integrações de forma clara.  
+    - Expanda as seções conforme necessário usando a ferramenta de expansão para 
+    garantir detalhamento.
+
+    <template_padrao>    
+      # Nome do Processo
+      Apresentação geral do processo, explicando seu objetivo e contexto dentro 
+      da empresa. Detalhe quais problemas ele resolve e quais os benefícios para 
+      o time de negócios.
+
+      ## Stakeholders
+      Lista dos principais envolvidos no processo, suas responsabilidades e o 
+      papel de cada um. Exemplos de stakeholders incluem analistas de negócios, 
+      gerentes de projeto, e equipes técnicas.
+
+      ## Atividades
+      Descrição detalhada de cada atividade envolvida no processo.
+
+      ### Atividade 1: [Nome da Atividade]
+        - **Descrição**: Explicação detalhada do que é feito nesta atividade.
+        - **Validações**: Critérios que precisam ser atendidos antes que a atividade 
+        seja considerada completa.
+        - **Fluxo**: Descrição do passo a passo para realizar a atividade, destacando 
+        as interações com outros processos ou sistemas.
+
+      ## Integrações
+      Detalhe sobre como o processo se integra com outros sistemas e plataformas, 
+      explicando a função de cada integração e sua importância para o sucesso do 
+      processo.
+
+      ### Integração 1: [Nome da Integração]
+        - **Descrição**: Explicação de como a integração funciona, quais sistemas 
+        estão envolvidos e seu papel no processo.
+
+      ## Glossário
+      Lista de termos técnicos e seus significados, para garantir que todos os 
+    </template_padrao>
+  expected_output: >
+    Documentação não técnica que contenha:
+   
+    - Descrições claras e concisas das atividades, interações e responsabilidades, 
+    garantindo que cada etapa do processo seja compreensível para a área de negócios.
+    - Um formato visualmente agradável e intuitivo, com uso de listas, tabelas e 
+    gráficos de fluxo, facilitando a navegação entre as seções.   
+    - Garantia de que a documentação está organizada e consistente, sendo uma 
+    ferramenta prática para a implementação e monitoramento de soluções.
+    
+auditar_documentacao:
+  description: >
+    Revise toda a documentação não técnica produzida pelo Agente Especialista em Documentação. 
+    Isso inclui:
+
+    - Verificar a conformidade com o <template_padrao> padrão e os requisitos estabelecidos.
+    - Avaliar a clareza e a acessibilidade da linguagem utilizada, garantindo que 
+    não haja jargões ou termos técnicos desnecessários.
+    - Realizar uma revisão minuciosa em busca de erros gramaticais, ortográficos e de 
+    formatação.   
+    - Assegurar que a documentação final seja coerente e que os processos sejam 
+    descritos de forma lógica e sequencial.
+    - Garanta que a documentação não fuja dos <requisitos>.
+    - Use as ferramentas de resumo para identificar melhorias e de expansão para adicionar 
+    detalhes essenciais.
+
+    <template_padrao>
+      # Nome do Processo
+      Apresentação geral do processo, explicando seu objetivo e contexto dentro 
+      da empresa. Detalhe quais problemas ele resolve e quais os benefícios para 
+      o time de negócios.
+
+      ## Stakeholders
+      Lista dos principais envolvidos no processo, suas responsabilidades e o 
+      papel de cada um. Exemplos de stakeholders incluem analistas de negócios, 
+      gerentes de projeto, e equipes técnicas.
+
+      ## Atividades
+      Descrição detalhada de cada atividade envolvida no processo.
+
+      ### Atividade 1: [Nome da Atividade]
+        - **Descrição**: Explicação detalhada do que é feito nesta atividade.
+        - **Validações**: Critérios que precisam ser atendidos antes que a atividade 
+        seja considerada completa.
+        - **Fluxo**: Descrição do passo a passo para realizar a atividade, destacando 
+        as interações com outros processos ou sistemas.
+
+      ## Integrações
+      Detalhe sobre como o processo se integra com outros sistemas e plataformas, 
+      explicando a função de cada integração e sua importância para o sucesso do 
+      processo.
+
+      ### Integração 1: [Nome da Integração]
+        - **Descrição**: Explicação de como a integração funciona, quais sistemas 
+        estão envolvidos e seu papel no processo.
+
+      ## Glossário
+      Lista de termos técnicos e seus significados, para garantir que todos os 
+    </template_padrao>
+
+    <requisitos>
+    {requisitos}
+    </requisitos>
+  expected_output: >
+    Relatório de revisão que contenha:
+    - **A documentação final revisada, aprovada e pronta para ser entregue ao time 
+    de negócios.**
+
+coordenar_comunicacao:
+  description: >
+    Garanta que a comunicação flua de maneira eficaz entre todos os membros da equipe. 
+    Isso inclui:
+
+    - Organizar e moderar reuniões regulares para discutir o progresso do projeto e 
+    quaisquer desafios enfrentados.
+    - Facilitar a troca de feedbacks entre os agentes, assegurando que todos os pontos 
+    de vista sejam considerados.
+    - Documentar decisões importantes e ações acordadas durante as reuniões.
+    - Promover um ambiente de colaboração onde os agentes se sintam à vontade para 
+    compartilhar ideias e preocupações.
+    - Acompanhar o progresso das tarefas e oferecer suporte sempre que necessário, 
+    garantindo que as metas do projeto sejam atingidas.
+  expected_output: >
+    O resultado esperado da tarefa é:
+
+    - Um registro de reuniões que inclua pautas, notas e decisões tomadas.
+    - Uma lista de ações acordadas e responsáveis por sua execução.
+    - Relatórios regulares sobre o andamento do projeto, destacando conquistas 
+    e áreas que precisam de atenção.
+    - Um ambiente de trabalho positivo e colaborativo, onde os agentes se sintam 
+    motivados e engajados.
+
+identificar_atividades:
+  description: > 
+    Revisar os <requisitos> levantados e mapear todas as atividades do processo de 
+    negócios. As responsabilidades incluem:
+
+    - Identificar e descrever cada atividade.
+    - Atribuir um setor responsável para cada uma.
+    - Definir o roteamento de cada atividade, indicando os próximos passos baseados em 
+    aprovações ou rejeições.
+    - Organizar essas informações de maneira clara para o próximo agente.    
+
+    ###EXEMPLO###
+
+    ###ATIVIDADE###
+    Fabricação da Marmita
+
+      - **Descrição**: Nesta atividade, a Cozinha prepara as marmitas de acordo com o pedido do cliente, garantindo a qualidade dos ingredientes e a segurança alimentar.
+      - **Validações**:
+          - **Conferência das marmitas**: a Cozinha confere se todas as marmitas estão de acordo com o pedido do cliente (tipo, tamanho, restrições alimentares).
+          - **Etiquetagem das marmitas**: as marmitas são etiquetadas com o nome do cliente, tipo e data de preparo.
+      - **Fluxo**:
+          1. A Cozinha consulta os pedidos confirmados no sistema.
+          2. A Cozinha prepara as marmitas conforme o pedido do cliente.
+          3. A Cozinha confere a qualidade dos ingredientes e a segurança alimentar.
+          4. A Cozinha embala as marmitas de forma segura.
+          5. **A Cozinha confere se todas as marmitas estão de acordo com o pedido do cliente.**
+          6. **A Cozinha etiqueta as marmitas.**
+          7. **O sistema registra as marmitas prontas para a etapa de entrega.**
+          8. **As marmitas prontas são encaminhadas para a Logística.**
+          9. **Se houver algum ajuste necessário, a Cozinha é notificada.**
+
+      ###RETORNO###
+      Atividade: Fabricação da Marmita
+      Setor Responsável: Cozinha
+      Roteamento Aprovação: Segue para Logística
+      Roteamento Reprovação: Não existe
+    
+    <requisitos> {requisitos} </requisitos>
+  expected_output: > 
+    Uma lista estruturada com atividades, setor responsável e roteamento, prontos para o 
+    próximo agente usar na criação do diagrama.
+
+diagramar_processo:
+  description: > 
+    Com base nas atividades e setores identificados, criar um diagrama do processo no 
+    Mermind. Responsabilidades incluem:
+
+    - Representar cada setor em uma poll exclusiva.
+    - Distribuir as atividades conforme os departamentos responsáveis.
+    - Assegurar clareza e visualização lógica do fluxo entre as atividades.
+    - Utilize **graph TD** como orientação padrão.
+    - Não utilize "()" na discrição das texto dos objetos.
+   
+  expected_output: > 
+    Um script do diagrama de processos organizado em Mermind para ser usado em um arquivo MARKDOWN, 
+    que representa cada atividade e setor, preparado para revisão.
+
+avaliar_conformidade:
+  description: > 
+    Revisar o diagrama de processos criado, assegurando que esteja de acordo com os requisitos e 
+    com o mapeamento das atividades e setores. Responsabilidades incluem:
+
+    - Verificar a precisão das atividades e setores representados.
+    - Avaliar o fluxo e roteamento para garantir conformidade com os requisitos.
+    - Fornecer feedback ou correções para otimizar o diagrama final.
+    - Utilize **graph TD** como orientação padrão.
+    - Não utilize "()" na discrição das texto dos objetos.
+    
+    <requisitos> {requisitos} </requisitos>
+  expected_output: >
+    Um script do diagrama de processos revisado em Mermind para ser usado em um arquivo MARKDOWN,
+    Um relatório de conformidade com sugestões de ajustes, se necessário, e a validação final 
+    do diagrama. Tudo em PORTUGUÊS BRASILEIRO.

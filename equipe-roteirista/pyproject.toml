@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "equipe-roteirista"
+version = "0.3.0"
+description = ""
+authors = ["Rodrigo Gonçalves <ro.go.calves@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<=3.13"
+streamlit = "^1.39.0"
+crewai = {extras = ["tools"], version = "^0.74.2"}
+google-generativeai = "^0.8.3"
+pysqlite3-binary = "^0.5.3.post1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
