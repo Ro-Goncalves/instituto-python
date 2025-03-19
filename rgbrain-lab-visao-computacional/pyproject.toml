@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "rgbrain-lab-ocr"
+version = "0.1.0"
+description = ""
+authors = ["Rodrig Gonçalves"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+ultralytics = "^8.2.14"
+notebook = "^7.1.3"
+easyocr = "^1.7.1"
+opencv-python = "^4.9.0.80"
+numpy = "^1.26.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

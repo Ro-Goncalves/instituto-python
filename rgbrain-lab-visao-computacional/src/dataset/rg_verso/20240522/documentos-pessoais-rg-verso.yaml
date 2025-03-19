@@ -1,0 +1,9 @@
+path: ./
+train: documentos-pessoais/rg-verso/train/images
+val: documentos-pessoais/rg-verso/valid/images
+test: documentos-pessoais/rg-verso/test/images
+
+nc: 5
+names: ['nome_pessoa', 'rg', 'cpf', 'data_nascimento', 'data_expedicao']
+
+
